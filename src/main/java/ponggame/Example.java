@@ -14,7 +14,7 @@ public class Example extends PApplet {
 	int value = 0;
 
 	public void draw() {
-	  fill(value);
+	  fill(value); 
 	  rect(25, 25, 50, 50);
 	}
 

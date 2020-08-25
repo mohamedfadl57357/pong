@@ -1,18 +1,18 @@
 package ponggame;
 
 public class Schlaeger {
-
 	public static final float WIDTH = 12.5f;
 
 	private float pos_x;
 	private float pos_y;
 	private float h;
-	private float y_speed = 10;
+	private float y_speed;
 
-	public Schlaeger(float x, float y, float h_size, boolean left) {
+	public Schlaeger(float x, float y, float h_size, float y_speed) {
 		this.pos_x = x;
 		this.pos_y = y;
 		this.h = h_size;
+		this.y_speed = y_speed;
 	}
 
 	public void draw(Ponggame ponggame) {
@@ -33,6 +33,24 @@ public class Schlaeger {
 		if (pos_y < 0) {
 			pos_y = 0;
 		}
+	}
+
+	public void computerSchlaeger(Ball ball) {
+		if (ball.isOnLeftSide() && ball.isMovingLeft()) {
+			autoMove(ball);
+		}
+	}
+
+	private void autoMove(Ball ball) {
+		if (ball.isAbove(this)) {
+			moveUP();
+		} else {
+			moveDown();
+		}
+	}
+
+	public float getMiddlePosition() {
+		return pos_y + h / 2;
 	}
 
 	public boolean hasSamePosition(Ball ball) {
